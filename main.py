@@ -17,6 +17,7 @@ def main():
         print("3. Задача: Кратчайший путь в лабиринте")
         print("4. Задача: Поиск пути в графе Румынии")
         print("5. Сравнение с ручным решением")
+        print("6. Задача: Льющиеся кувшины (реализация примера)")
         print("0. Выход")
         
         choice = input("\nВаш выбор: ").strip()
@@ -40,6 +41,10 @@ def main():
         elif choice == '5':
             from tasks.romania_graph import compare_with_manual
             compare_with_manual()
+        
+        elif choice == '6':
+            from tasks.water_jugs import run_example_only
+            run_example_only()
         
         elif choice == '0':
             print("Выход из программы.")
