@@ -1,4 +1,5 @@
 from search import Problem, breadth_first_search, path_states, failure
+from search.visualize import visualize_path_in_graph
 
 # Граф Румынии из первой лабораторной
 romania_map = {
@@ -44,8 +45,8 @@ class RomaniaProblem(Problem):
         return float('inf')
 
 
-def find_shortest_path(start, end):
-    """Поиск кратчайшего пути между городами."""
+def find_shortest_path(start, end, visualize=True):
+    """Поиск кратчайшего пути между городами с визуализацией."""
     problem = RomaniaProblem(start, end, romania_map)
     solution = breadth_first_search(problem)
     
@@ -55,6 +56,22 @@ def find_shortest_path(start, end):
         print(" -> ".join(path))
         print(f"Длина пути (в шагах): {len(path)-1}")
         print(f"Общая стоимость: {solution.path_cost}")
+        
+        # Визуализация, если включена
+        if visualize:
+            print("\nВизуализация графа с найденным путем...")
+            try:
+                visualize_path_in_graph(
+                    romania_map, 
+                    path, 
+                    graph_type="romania", 
+                    title=f"Путь из {start} в {end}\nСтоимость: {solution.path_cost}"
+                )
+            except ImportError:
+                print("Для визуализации установите библиотеки: pip install matplotlib networkx")
+            except Exception as e:
+                print(f"Ошибка при визуализации: {e}")
+        
         return path, solution.path_cost
     else:
         print(f"Путь из {start} в {end} не найден!")
@@ -69,7 +86,14 @@ def compare_with_manual():
     print("Стоимость: 140 + 99 + 211 = 450")
     print("\nРешение BFS (поиск в ширину):")
     
-    path, cost = find_shortest_path('Arad', 'Bucharest')
+    path, cost = find_shortest_path('Arad', 'Bucharest', visualize=False)
     
-    print("\nВывод: BFS находит путь с минимальным количеством шагов,")
-    print("но не обязательно с минимальной стоимостью!")
+    if path:
+        print(f"\nBFS нашел путь: {' -> '.join(path)}")
+        print(f"Стоимость BFS пути: {cost}")
+        
+        print("\nВывод: BFS находит путь с минимальным количеством шагов,")
+        print("но не обязательно с минимальной стоимостью!")
+        print("Для минимальной стоимости нужен алгоритм A* или Дейкстры.")
+    
+    return path, cost

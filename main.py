@@ -12,10 +12,10 @@ def main():
     
     while True:
         print("\nВыберите задание:")
-        print("1. Пример BFS на простом графе")
+        print("1. Пример BFS на простом графе (с визуализацией)")
         print("2. Задача: Подсчет островов в матрице")
         print("3. Задача: Кратчайший путь в лабиринте")
-        print("4. Задача: Поиск пути в графе Румынии")
+        print("4. Задача: Поиск пути в графе Румынии (с визуализацией)")
         print("5. Сравнение с ручным решением")
         print("6. Задача: Льющиеся кувшины (реализация примера)")
         print("0. Выход")
@@ -36,7 +36,7 @@ def main():
         
         elif choice == '4':
             from tasks.romania_graph import find_shortest_path
-            find_shortest_path('Arad', 'Bucharest')
+            find_shortest_path('Arad', 'Bucharest', visualize=True)
         
         elif choice == '5':
             from tasks.romania_graph import compare_with_manual

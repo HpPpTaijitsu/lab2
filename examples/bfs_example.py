@@ -1,4 +1,5 @@
 from search import Problem, breadth_first_search, path_states
+from search.visualize import visualize_path_in_graph
 
 # Простой граф для примера
 simple_graph = {
@@ -26,7 +27,7 @@ class SimpleGraphProblem(Problem):
 
 
 def run_example():
-    """Запуск примера BFS на простом графе."""
+    """Запуск примера BFS на простом графе с визуализацией."""
     print("Пример BFS на простом графе:")
     print("Граф: A -> B, C; B -> D, E; C -> F; E -> F")
     
@@ -35,7 +36,15 @@ def run_example():
     
     if solution:
         path = path_states(solution)
-        print(f"Найден путь: {' -> '.join(path)}")
+        print(f"\nНайден путь: {' -> '.join(path)}")
         print(f"Длина пути: {len(path)-1} шагов")
+        
+        # Визуализация графа с путем
+        print("\nВизуализация графа с найденным путем...")
+        try:
+            visualize_path_in_graph(simple_graph, path, graph_type="simple", 
+                                  title=f"BFS путь: A -> F\nДлина: {len(path)-1}")
+        except ImportError:
+            print("Ошибка, установите библиотеки: pip install matplotlib networkx")
     else:
         print("Путь не найден!")
