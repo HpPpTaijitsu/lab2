@@ -4,6 +4,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.venv/
 
 # VS Code
 .vscode/
@@ -31,6 +32,17 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+# Generated images
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
 
 # OS
 .DS_Store
